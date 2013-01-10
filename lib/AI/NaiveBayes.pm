@@ -59,7 +59,10 @@ __PACKAGE__->meta->make_immutable;
 1;
 __END__
 
+
 # ABSTRACT: A Bayesian classifier
+
+=encoding utf8
 
 =head1 SYNOPSIS
 
@@ -74,11 +77,13 @@ __END__
 
 This module implements the classic "Naive Bayes" machine learning
 algorithm.  This is a low level class that accepts only pre-computed feature-vectors
-as input, see L<AI::Classifier::Text> for a text classifier that by default uses
-this class.  The object is immutable.
+as input, see L<AI::Classifier::Text> for a text classifier that uses
+this class.  
 
 Creation of C<AI::NaiveBayes> classifier object out of training
 data is done by L<AI::NaiveBayes::Learner>.
+
+The classifier object is immutable.
 
 It is a well-studied probabilistic algorithm often used in
 automatic text categorization.  Compared to other algorithms (kNN,
@@ -170,5 +175,9 @@ L<"http://www.cs.washington.edu/homes/pedrod/mlj97.ps.gz">
 =head1 SEE ALSO
 
 Algorithm::NaiveBayes (3), AI::Classifier::Text(3) 
+
+=head1 BASED ON
+
+The code and description is based on L<Algorithm::NaiveBayes>.
 
 =cut
