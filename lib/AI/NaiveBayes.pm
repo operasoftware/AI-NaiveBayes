@@ -100,19 +100,30 @@ L<http://faure.iei.pi.cnr.it/~fabrizio/Publications/ACMCS02.pdf>
 
 =item new( model => $model )
 
-    Internal. See L<AI::NaiveBayes::Learner> to learn how to create a C<AI::NaiveBayes>
-    classifier from training data.
+Internal. See L<AI::NaiveBayes::Learner> to learn how to create a C<AI::NaiveBayes>
+classifier from training data.
 
 =item classify( HASHREF )
 
-    Classifies a feature-vector of the form:
+Classifies a feature-vector of the form:
 
     { feature1 => weight1, feature2 => weight2, ... }
     
-    The result is a C<AI::NaiveBayes::Classification> object.
+The result is a C<AI::NaiveBayes::Classification> object.
 
 =item rescale
-   Internal
+
+Internal
+
+=back
+
+=head1 ATTRIBUTES 
+
+=over 4
+
+=item model
+
+Internal
 
 =back
 
