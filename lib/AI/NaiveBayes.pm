@@ -181,6 +181,6 @@ Algorithm::NaiveBayes (3), AI::Classifier::Text(3)
 
 =head1 BASED ON
 
-The code and description is based on L<Algorithm::NaiveBayes>.
+Much of the code and description is from L<Algorithm::NaiveBayes>.
 
 =cut

@@ -159,4 +159,8 @@ The parameter should be of the form of
 
 =item C<add_hash>
 
+=head1 BASED ON
+
+Much of the code and description is from L<Algorithm::NaiveBayes>.
+
 =cut
