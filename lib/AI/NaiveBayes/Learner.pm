@@ -51,7 +51,7 @@ sub classifier {
         $model->{prior_probs}{$label} = log($labels->{$label}{count} / $examples);
 
         # Count the number of tokens in this cat
-        my $label_tokens = sum_hash($labels->{$label}{attributes});
+        my $label_tokens = sum( values %{ $labels->{$label}{attributes} } );
 
         # Compute a smoothing term so P(word|cat)==0 can be avoided
         $model->{smoother}{$label} = -log($label_tokens + $vocab_size);
@@ -80,11 +80,6 @@ sub classifier {
     }
     my $classifier_class = $self->classifier_class;
     return $classifier_class->new( model => $model );
-}
-
-sub sum_hash {
-    my $href = shift;
-    return sum(values %$href);
 }
 
 sub add_hash {
@@ -159,5 +154,9 @@ The parameter should be of the form of
     Creates an AI::NaiveBayes classifier based on the data accumulated before.
 
 =back
+
+=head1 UTILITY SUBS
+
+=item C<add_hash>
 
 =cut

@@ -111,6 +111,9 @@ L<http://faure.iei.pi.cnr.it/~fabrizio/Publications/ACMCS02.pdf>
     
     The result is a C<AI::NaiveBayes::Classification> object.
 
+=item rescale
+   Internal
+
 =back
 
 =head1 THEORY
