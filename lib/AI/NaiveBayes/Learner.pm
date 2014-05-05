@@ -157,7 +157,11 @@ The parameter should be of the form of
 
 =head1 UTILITY SUBS
 
+=over 4
+
 =item C<add_hash>
+
+=back
 
 =head1 BASED ON
 

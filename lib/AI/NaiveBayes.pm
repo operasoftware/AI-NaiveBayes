@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use 5.010;
 use AI::NaiveBayes::Classification;
+use AI::NaiveBayes::Learner;
 use Moose;
 use MooseX::Storage;
 
@@ -12,6 +13,16 @@ use List::Util qw(max);
 with Storage(format => 'Storable', io => 'File');
 
 has model   => (is => 'ro', isa => 'HashRef[HashRef]', required => 1);
+
+sub train {
+    my $self = shift;
+    my $learner = AI::NaiveBayes::Learner->new();
+    for my $example ( @_ ){
+        $learner->add_example( %$example );
+    }
+    return $learner->classifier;
+}
+
 
 sub classify {
     my ($self, $newattrs) = @_;
@@ -66,6 +77,21 @@ __END__
 
 =head1 SYNOPSIS
 
+    # AI::NaiveBayes objects are created by AI::NaiveBayes::Learner
+    # but for quick start you can use the 'train' class method
+    # that is a shortcut using default AI::NaiveBayes::Learner settings
+
+    my $classifier = AI::NaiveBayes->train( 
+        {
+            attributes => _hash(qw(sheep very valuable farming)),
+            labels => ['farming']
+        },
+        {
+            attributes => _hash(qw(vampires cannot see their images mirrors)),
+            labels => ['vampire']
+        },
+    );
+
     # Classify a feature vector
     my $result = $classifier->classify({bar => 3, blurp => 2});
     
@@ -81,7 +107,9 @@ as input, see L<AI::Classifier::Text> for a text classifier that uses
 this class.  
 
 Creation of C<AI::NaiveBayes> classifier object out of training
-data is done by L<AI::NaiveBayes::Learner>.
+data is done by L<AI::NaiveBayes::Learner>. For quick start 
+you can use the limited C<train> class method that trains the 
+classifier in a default way.
 
 The classifier object is immutable.
 
@@ -102,6 +130,13 @@ L<http://faure.iei.pi.cnr.it/~fabrizio/Publications/ACMCS02.pdf>
 
 Internal. See L<AI::NaiveBayes::Learner> to learn how to create a C<AI::NaiveBayes>
 classifier from training data.
+
+=item train( LIST of HASHREFS )
+
+Shortcut for creating a trained classifier using L<AI::NaiveBayes::Learner> default
+settings. 
+Arguments are passed to the C<add_example> method of the L<AI::NaiveBayes::Learner>
+object one by one.
 
 =item classify( HASHREF )
 
