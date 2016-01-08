@@ -83,11 +83,16 @@ __END__
 
     my $classifier = AI::NaiveBayes->train( 
         {
-            attributes => _hash(qw(sheep very valuable farming)),
+            attributes => {
+                sheep => 1, very => 1,  valuable => 1, farming => 1
+            },
             labels => ['farming']
         },
         {
-            attributes => _hash(qw(vampires cannot see their images mirrors)),
+            attributes => {
+                vampires => 1, cannot => 1, see => 1, their => 1,
+                images => 1, mirrors => 1
+            },
             labels => ['vampire']
         },
     );
