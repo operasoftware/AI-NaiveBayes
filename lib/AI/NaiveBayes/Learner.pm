@@ -103,10 +103,8 @@ __END__
 
     my $learner = AI::NaiveBayes::Learner->new(features_kept => 0.5);
     $learner->add_example(
-        { 
-            attributes => { sheep => 1, very => 1, valuable => 1, farming => 1 },
-            labels => ['farming'] 
-        },
+        attributes => { sheep => 1, very => 1, valuable => 1, farming => 1 },
+        labels => ['farming'] 
     );
 
     my $classifier = $learner->classifier;
@@ -143,11 +141,12 @@ C<AI::NaiveBayes>
 
 =over 4
 
-=item C<add_example( HASHREF )>
+=item C<add_example( attributes => HASHREF, labels => LIST )>
 
 Saves the information from a training example into internal data structures.
-The parameter should be of the form of 
+C<attributes> should be of the form of 
     { feature1 => weight1, feature2 => weight2, ... }
+C<labels> should be a list of strings denoting one or more classes to which the example belongs.
 
 =item C<classifier()>
 
